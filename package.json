@@ -1,0 +1,85 @@
+{
+  "name": "react-native-system-llm",
+  "version": "0.0.0-pre.0",
+  "description": "Unified React Native API for the OS-provided on-device LLM: Apple Foundation Models on iOS 26+, Gemini Nano on Android. No bundled weights, zero app-size hit.",
+  "main": "lib/commonjs/index.js",
+  "module": "lib/module/index.js",
+  "types": "lib/typescript/src/index.d.ts",
+  "source": "src/index.ts",
+  "files": [
+    "src",
+    "lib",
+    "android",
+    "ios",
+    "react-native-system-llm.podspec",
+    "!ios/build",
+    "!android/build",
+    "!android/gradle",
+    "!android/gradlew",
+    "!android/gradlew.bat",
+    "!android/local.properties",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__",
+    "!**/.*"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "test": "jest",
+    "prepack": "bob build"
+  },
+  "keywords": [
+    "react-native",
+    "on-device",
+    "on-device-llm",
+    "llm",
+    "apple-foundation-models",
+    "apple-intelligence",
+    "gemini-nano",
+    "aicore",
+    "ios",
+    "android"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mobigaurav/react-native-system-llm.git"
+  },
+  "homepage": "https://github.com/mobigaurav/react-native-system-llm#readme",
+  "bugs": {
+    "url": "https://github.com/mobigaurav/react-native-system-llm/issues"
+  },
+  "author": {
+    "name": "Gaurav Kumar",
+    "url": "https://github.com/mobigaurav"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-native": "^0.72.0",
+    "jest": "^29.0.0",
+    "react": "18.2.0",
+    "react-native": "0.72.0",
+    "react-native-builder-bob": "^0.23.0",
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "commonjs",
+      "module",
+      "typescript"
+    ]
+  }
+}

@@ -1,0 +1,73 @@
+buildscript {
+  ext.getExtOrDefault = { name ->
+    return rootProject.ext.has(name) ? rootProject.ext.get(name) : project.properties['SystemLLM_' + name]
+  }
+
+  repositories {
+    google()
+    mavenCentral()
+  }
+
+  dependencies {
+    classpath "com.android.tools.build:gradle:8.4.0"
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.24"
+  }
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'org.jetbrains.kotlin.android'
+
+def isNewArchitectureEnabled() {
+  return rootProject.hasProperty("newArchEnabled") && rootProject.getProperty("newArchEnabled") == "true"
+}
+
+android {
+  namespace 'com.reactnativesystemllm'
+  compileSdkVersion getExtOrDefault('compileSdkVersion')?.toInteger() ?: 34
+
+  defaultConfig {
+    minSdkVersion getExtOrDefault('minSdkVersion')?.toInteger() ?: 24
+    targetSdkVersion getExtOrDefault('targetSdkVersion')?.toInteger() ?: 34
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+    }
+  }
+
+  lintOptions {
+    disable 'GradleCompatible'
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
+  }
+
+  kotlinOptions {
+    jvmTarget = '17'
+  }
+
+  sourceSets {
+    main {
+      java.srcDirs = ['src/main/java']
+    }
+  }
+}
+
+repositories {
+  google()
+  mavenCentral()
+}
+
+dependencies {
+  implementation 'com.facebook.react:react-android'
+  implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
+
+  // ML Kit GenAI (Gemini Nano) — consumer app should also add these so the
+  // real availability check + generation call sites work. Comment out this
+  // block until you're ready to wire them:
+  // implementation 'com.google.mlkit:genai-common:0.1.0'
+  // implementation 'com.google.mlkit:genai-generation:0.1.0'
+}
