@@ -58,7 +58,7 @@ export async function step(input: RuntimeStepInput): Promise<RuntimeStep> {
     throw new Error(
       'react-native-system-llm: no runtime available on this device. ' +
         'Call warmUp() first and check its result — the caller should fall ' +
-        'back to the cloud path when ok=false.'
+        'back to the cloud path when ok=false.',
     );
   }
   if (!rt.isLoadedSync()) await rt.init();

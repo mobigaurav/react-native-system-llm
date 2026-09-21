@@ -33,17 +33,23 @@ const rt: Runtime & { loadScript: typeof loadScript; reset: typeof reset } = {
   loadScript,
   reset,
 
-  async isAvailable(): Promise<boolean> { return true; },
+  async isAvailable(): Promise<boolean> {
+    return true;
+  },
 
-  isLoadedSync(): boolean { return loaded; },
+  isLoadedSync(): boolean {
+    return loaded;
+  },
 
-  async init(): Promise<void> { loaded = true; },
+  async init(): Promise<void> {
+    loaded = true;
+  },
 
   async step(_input: RuntimeStepInput): Promise<RuntimeStep> {
     if (cursor >= script.length) {
       throw new Error(
         `MockRuntime: script exhausted (${script.length} steps consumed, ` +
-        `hop ${cursor + 1} requested)`
+          `hop ${cursor + 1} requested)`,
       );
     }
     const entry = script[cursor];
@@ -60,7 +66,9 @@ const rt: Runtime & { loadScript: typeof loadScript; reset: typeof reset } = {
     };
   },
 
-  async unload(): Promise<void> { loaded = false; },
+  async unload(): Promise<void> {
+    loaded = false;
+  },
 };
 
 export default rt;

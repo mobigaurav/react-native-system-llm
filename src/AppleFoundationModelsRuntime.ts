@@ -63,7 +63,11 @@ const rt: Runtime = {
 
   async unload(): Promise<void> {
     if (!NM) return;
-    try { await NM.releaseSession(); } catch { /* ignore */ }
+    try {
+      await NM.releaseSession();
+    } catch {
+      /* ignore */
+    }
     loaded = false;
   },
 };

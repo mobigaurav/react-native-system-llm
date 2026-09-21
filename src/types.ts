@@ -60,10 +60,7 @@ export interface RuntimeStep {
   toolCalls: RuntimeToolCall[];
 }
 
-export type BackendId =
-  | 'apple-foundation-models'
-  | 'gemini-nano'
-  | 'mock';
+export type BackendId = 'apple-foundation-models' | 'gemini-nano' | 'mock';
 
 /**
  * A concrete runtime — one per platform (or a mock for tests / simulator).

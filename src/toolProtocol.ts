@@ -18,7 +18,7 @@ export function buildInstructions(systemPrompt: string, tools: ToolSchema[] = []
   const lines: string[] = [systemPrompt, ''];
   lines.push('## Available tools');
   lines.push(
-    'You may call the following tools. To call a tool, reply with ONE OR MORE tool_call blocks and nothing else — no prose before or after. Each block must be strict JSON on its own line, wrapped in <tool_call>...</tool_call>. If you don\'t need a tool, reply with the final answer for the user in plain prose. Never mix a tool_call block with prose in the same reply.'
+    "You may call the following tools. To call a tool, reply with ONE OR MORE tool_call blocks and nothing else — no prose before or after. Each block must be strict JSON on its own line, wrapped in <tool_call>...</tool_call>. If you don't need a tool, reply with the final answer for the user in plain prose. Never mix a tool_call block with prose in the same reply.",
   );
   lines.push('');
   lines.push('Format for calling a tool:');
@@ -64,9 +64,10 @@ export function parseToolCalls(raw: string): { content: string; toolCalls: Runti
  * single prompt string (e.g. Android's Gemini Nano public inference API)
  * uses this to know where system content ends.
  */
-export function splitSystemAndTurns(
-  messages: ChatMessage[]
-): { system: string; turns: ChatMessage[] } {
+export function splitSystemAndTurns(messages: ChatMessage[]): {
+  system: string;
+  turns: ChatMessage[];
+} {
   const systemParts: string[] = [];
   const turns: ChatMessage[] = [];
   for (const m of messages) {

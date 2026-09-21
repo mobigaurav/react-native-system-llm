@@ -65,7 +65,11 @@ export async function warmUp(): Promise<WarmUpResult> {
 
 export async function unload(): Promise<void> {
   if (active) {
-    try { await active.unload(); } catch { /* ignore */ }
+    try {
+      await active.unload();
+    } catch {
+      /* ignore */
+    }
   }
 }
 

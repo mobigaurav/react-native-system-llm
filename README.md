@@ -25,14 +25,14 @@ This library is the thin, opinionated wrapper that gives you one API for both.
 
 ## What you get
 
-| | Bundled model | This library |
-|---|---|---|
-| App install size delta | +30-50 MB library + 1.8 GB weights | +~50 KB native bridge, zero weights |
-| First-launch UX | Download prompt + progress bar + Wi-Fi guard | Nothing — model already on device |
-| Runs on | iPhone 12+ / most Android | iPhone 15 Pro+ (iOS 26) + Pixel 8 Pro+ / Galaxy S24+ (Android) |
-| Turn latency (~3 B model) | ~3-5 s | ~2-4 s (OS-tuned) |
-| Privacy story | Weights ship with app | "Uses Apple Intelligence" / "Uses Gemini Nano" |
-| Cloud infra | S3 + CDN | None |
+|                           | Bundled model                                | This library                                                   |
+| ------------------------- | -------------------------------------------- | -------------------------------------------------------------- |
+| App install size delta    | +30-50 MB library + 1.8 GB weights           | +~50 KB native bridge, zero weights                            |
+| First-launch UX           | Download prompt + progress bar + Wi-Fi guard | Nothing — model already on device                              |
+| Runs on                   | iPhone 12+ / most Android                    | iPhone 15 Pro+ (iOS 26) + Pixel 8 Pro+ / Galaxy S24+ (Android) |
+| Turn latency (~3 B model) | ~3-5 s                                       | ~2-4 s (OS-tuned)                                              |
+| Privacy story             | Weights ship with app                        | "Uses Apple Intelligence" / "Uses Gemini Nano"                 |
+| Cloud infra               | S3 + CDN                                     | None                                                           |
 
 On ineligible devices the library's capability probe returns `false` and your code falls back to whatever cloud path you want (OpenAI, Anthropic, self-hosted, etc.). Nothing breaks — the premium experience is just gated to modern hardware.
 
@@ -124,7 +124,7 @@ for (let hop = 0; hop < 4; hop++) {
   messages.push({
     role: 'assistant',
     content: step.content,
-    tool_calls: step.toolCalls.map(tc => ({
+    tool_calls: step.toolCalls.map((tc) => ({
       id: tc.id,
       function: { name: tc.name, arguments: JSON.stringify(tc.args) },
     })),
@@ -147,7 +147,7 @@ await SystemLLM.unload();
 
 ## How tool calling works
 
-The OS-native models don't (yet) expose a stable *runtime-defined* typed Tool API — Apple's `@Generable` requires compile-time argument types, and Android's typed function-calling for Gemini Nano is still evolving.
+The OS-native models don't (yet) expose a stable _runtime-defined_ typed Tool API — Apple's `@Generable` requires compile-time argument types, and Android's typed function-calling for Gemini Nano is still evolving.
 
 This library uses a **prompt-engineered tool-calling protocol** instead:
 
@@ -183,7 +183,7 @@ import SystemLLM, { MockRuntime } from 'react-native-system-llm';
 if (__DEV__ && isSimulatorOrEmulator()) {
   MockRuntime.loadScript([
     { toolCalls: [{ name: 'get_weather', args: { city: 'Paris' } }] },
-    { content: 'It\'s 18°C and cloudy in Paris.' },
+    { content: "It's 18°C and cloudy in Paris." },
   ]);
   SystemLLM.install(MockRuntime);
 }
